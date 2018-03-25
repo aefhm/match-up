@@ -21,12 +21,13 @@ const suitLabel = {
 };
 
 class Board extends React.Component {
-
   render() {
     let cards = [];
 
     for (let i = 0; i < cardLimit; i++)
       cards.push(<Card key={i} value={ i % 13 } suit={ suitLabel[Math.floor(i / 13)] } />);
+
+    cards = shuffle(cards);
 
     return (
       <div className="board">
@@ -35,5 +36,20 @@ class Board extends React.Component {
     )
   }
 }
+
+function shuffle(cards) {
+  let randomizedCards = [];
+  let array = cards.slice();
+
+  while (array.length) {
+    let randomIndex = Math.floor(array.length * Math.random());
+
+    randomizedCards.push(array[randomIndex]);
+    array.splice(randomIndex, 1);
+  }
+
+  return randomizedCards;
+}
+
 
 ReactDOM.render(<Board />, document.getElementById('game'));
