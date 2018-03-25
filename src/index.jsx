@@ -25,7 +25,7 @@ class Board extends React.Component {
     let cards = [];
 
     for (let i = 0; i < cardLimit; i++)
-      cards.push(<Card key={i} value={ i % 13 } suit={ suitLabel[Math.floor(i / 13)] } />);
+      cards.push(<Card key={i} index={i} value={ i % 13 } suit={ suitLabel[Math.floor(i / 13)] } />);
 
     cards = shuffle(cards);
 
@@ -34,6 +34,22 @@ class Board extends React.Component {
         {cards}
       </div>
     )
+  }
+}
+
+class Stats extends React.Component {
+  render() {
+    let cards = [];
+
+    for (let i = 0; i < this.props.matchedCards; i++)
+      cards.push(<Card key={i} index={i} value={ i % 13 } suit={ suitLabel[Math.floor(i / 13)] } />);
+
+    return (
+      <div className="stats">
+        You have matched { 5 } cards
+        {cards}
+      </div>
+    );
   }
 }
 
@@ -51,5 +67,4 @@ function shuffle(cards) {
   return randomizedCards;
 }
 
-
-ReactDOM.render(<Board />, document.getElementById('game'));
+ReactDOM.render(<div><Board /><Stats /></div>, document.getElementById('game'));
