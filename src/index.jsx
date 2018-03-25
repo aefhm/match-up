@@ -1,6 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 
+
+
+const cardLimit = 52;
+const suitLabel = {
+  0: 'Clubs',
+  1: 'Diamonds',
+  2: 'Hearts',
+  3: 'Spades',
+};
+
+const store = createStore(function (state = {}, action) {
+  switch (action.type) {
+    default:
+      return state;
+  }
+});
 
 class Card extends React.Component {
   render() {
@@ -11,14 +29,6 @@ class Card extends React.Component {
     );
   }
 }
-
-const cardLimit = 52;
-const suitLabel = {
-  0: 'Clubs',
-  1: 'Diamonds',
-  2: 'Hearts',
-  3: 'Spades',
-};
 
 class Board extends React.Component {
   render() {
@@ -67,4 +77,12 @@ function shuffle(cards) {
   return randomizedCards;
 }
 
-ReactDOM.render(<div><Board /><Stats /></div>, document.getElementById('game'));
+ReactDOM.render(
+  <Provider store={store}>
+    <div>
+      <Board />
+      <Stats />
+    </div>
+  </Provider>,
+  document.getElementById('game')
+);
