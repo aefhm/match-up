@@ -2,13 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import PropTypes from 'prop-types';
-import Card from './card';
-import Board from './board';
-import Stats from './stats';
-
-
-const cardLimit = 52;
+import Game from './game';
 
 const store = createStore(function (state = {}, action) {
   switch (action.type) {
@@ -21,10 +15,6 @@ const store = createStore(function (state = {}, action) {
 
 ReactDOM.render(
   <Provider store={store}>
-    <div>
-      <Board cardLimit={cardLimit}/>
-      <Stats />
-    </div>
-  </Provider>,
-  document.getElementById('game')
+    <Game />
+  </Provider>, document.getElementById('game')
 );
