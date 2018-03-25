@@ -1,0 +1,16 @@
+.card {
+  width: 75px;
+  height: 100px;
+  display: inline-block;
+  border: solid;
+  margin: 5px;
+
+  .selected {
+    background-color: gray;
+  }
+}
+
+.board {
+  flex-wrap: wrap;
+  display: flex;
+}
