@@ -34,13 +34,16 @@ const Game = function (store) {
         cardLimit={cardLimit}
         turnCard={turnCard}
       />
-      <Stats />
+      <Stats
+        cards={store.matchedCardIds}
+      />
     </div>
   );
 };
 
 const mapStateToProps = function (state) {
   return {
+    matchedCardIds: state.matchedCards,
     turnedCardId: state.turnedCards[0],
     activeTurn: state.turnedCards.length,
   };
