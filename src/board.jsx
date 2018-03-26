@@ -18,22 +18,25 @@ function shuffle(cards) {
 }
 
 class Board extends React.Component {
-  render() {
-    let cards = [];
+  componentWillMount() {
+    this.cards = [];
 
     for (let i = 0; i < this.props.cardLimit; i++)
-      cards.push(<Card
+      this.cards.push(<Card
         key={i}
         index={i}
         value={i % 13}
-        click={function () { console.log('cilkced'); }}
+        click={() => { this.props.turnCard(i, this.props.turnedCardId); }}
       />);
 
-    cards = shuffle(cards);
+    this.cards = shuffle(this.cards);
+  }
+
+  render() {
 
     return (
       <div className="board">
-        {cards}
+        {this.cards}
       </div>
     )
   }
