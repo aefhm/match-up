@@ -6,30 +6,43 @@ import Stats from './stats';
 
 const cardLimit = 52;
 
-class Game extends React.Component {
-  render() {
-    return (
-      <div>
-        <Board
-          cardLimit={cardLimit}
-          turnCard={function () {}} 
-        />
-        <Stats />
-      </div>
-    );
+const Game = function (store) {
+  function turnCard(id, turnedCardId) {
+    if (turnedCardId !== undefined) {
+      if (id !== turnedCardId && id % 13 === turnedCardId % 13) {
+        store.dispatch({
+          type: 'MATCHED_CARDS',
+          payload: [id, turnedCardId],
+        });
+      } else {
+        store.dispatch({
+          type: 'CLEAR_TURNED_CARDS',
+        });
+      }
+    } else {
+      store.dispatch({
+        type: 'TURN_CARD',
+        payload: id,
+      });
+    }
   }
-};
 
-function turnCard(id) {
-  dispatch({
-    type: 'TURN_CARD',
-    id: id,
-  });
-}
+  return (
+    <div>
+      <Board
+        turnedCardId={store.turnedCardId}
+        cardLimit={cardLimit}
+        turnCard={turnCard}
+      />
+      <Stats />
+    </div>
+  );
+};
 
 const mapStateToProps = function (state) {
   return {
-    turnedCards: 0,
+    turnedCardId: state.turnedCards[0],
+    activeTurn: state.turnedCards.length,
   };
 };
 

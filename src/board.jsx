@@ -44,6 +44,8 @@ class Board extends React.Component {
 
 Board.propTypes = {
   cardLimit: PropTypes.number.isRequired,
+  turnCard: PropTypes.func,
+  turnedCardId: PropTypes.number,
 };
 
 export default Board;
