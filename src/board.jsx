@@ -36,8 +36,8 @@ class Board extends React.Component {
         index={i}
         value={i % 13}
         blank={this.props.matchedCardIds.includes(i)}
-        faceUp={this.props.turnedCardId === i}
-        click={() => { this.props.turnCard(i, this.props.turnedCardId); }}
+        faceUp={this.props.faceUpCardIds.includes(i)}
+        click={() => { this.props.turnCard(i, this.props.faceUpCardIds); }}
       />;
 
     return (
@@ -50,9 +50,9 @@ class Board extends React.Component {
 
 Board.propTypes = {
   cardLimit: PropTypes.number.isRequired,
+  faceUpCardIds: PropTypes.array,
   matchedCardIds: PropTypes.array,
   turnCard: PropTypes.func,
-  turnedCardId: PropTypes.number,
 };
 
 export default Board;
