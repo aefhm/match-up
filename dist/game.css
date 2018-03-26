@@ -1,13 +1,27 @@
-.card {
+.card.face-down{
   width: 75px;
   height: 100px;
   display: inline-block;
   border: solid;
   margin: 5px;
+}
 
-  .selected {
-    background-color: gray;
-  }
+.card.face-up {
+  width: 75px;
+  height: 100px;
+  display: inline-block;
+  margin: 5px;
+  border: solid;
+  background-color: gray;
+}
+
+.card.blank {
+  width: 75px;
+  height: 100px;
+  border: solid;
+  border-color: white;
+  display: inline-block;
+  margin: 5px;
 }
 
 .board {

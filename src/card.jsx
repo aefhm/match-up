@@ -10,22 +10,39 @@ const suitLabel = {
 };
 
 class Card extends React.Component {
+  innerDisplay() {
+    if (this.props.faceUp)
+      return this.props.value + ' of ' + suitLabel[Math.floor(this.props.index / 13)];
+    else
+      return 'Back of card';
+  }
+
   render() {
+    let className = 'card';
+
+    if (this.props.blank) className += ' blank';
+    else {
+      if (this.props.faceUp) className += ' face-up';
+      else className += ' face-down';
+    }
+
     return (
-      <div className="card" onClick={this.props.click}>
-        { this.props.faceUp ? this.props.value + ' of ' + suitLabel[Math.floor(this.props.index / 13)] : 'Back of card'}
+      <div className={className} onClick={this.props.blank ? () => {} : this.props.click}>
+        {this.props.blank ? '' : this.innerDisplay()}
       </div>
     );
   }
 }
 
 Card.propTypes = {
+  blank: PropTypes.bool,
   click: PropTypes.func,
   faceUp: PropTypes.bool,
   index: PropTypes.number.isRequired,
 };
 
 Card.defaultProps = {
+  blank: false,
   faceUp: true,
 };
 

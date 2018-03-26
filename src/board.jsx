@@ -19,6 +19,15 @@ function shuffle(cards) {
 
 class Board extends React.Component {
   componentWillMount() {
+    this.randomOrder = new Array;
+
+    for (let i = 0; i < this.props.cardLimit; i++)
+      this.randomOrder.push(i);
+
+    this.randomOrder = shuffle(this.randomOrder);
+  }
+
+  render() {
     this.cards = [];
 
     for (let i = 0; i < this.props.cardLimit; i++)
@@ -26,13 +35,11 @@ class Board extends React.Component {
         key={i}
         index={i}
         value={i % 13}
+        blank={this.props.matchedCardIds.includes(i)}
+        faceUp={this.props.turnedCardId === i}
         click={() => { this.props.turnCard(i, this.props.turnedCardId); }}
       />);
 
-    this.cards = shuffle(this.cards);
-  }
-
-  render() {
     return (
       <div className="board">
         {this.cards}
@@ -43,6 +50,7 @@ class Board extends React.Component {
 
 Board.propTypes = {
   cardLimit: PropTypes.number.isRequired,
+  matchedCardIds: PropTypes.array,
   turnCard: PropTypes.func,
   turnedCardId: PropTypes.number,
 };

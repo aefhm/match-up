@@ -30,6 +30,7 @@ const Game = function (store) {
   return (
     <div>
       <Board
+        matchedCardIds={store.matchedCardIds}
         turnedCardId={store.turnedCardId}
         cardLimit={cardLimit}
         turnCard={turnCard}
