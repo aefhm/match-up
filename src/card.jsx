@@ -22,12 +22,10 @@ class Card extends React.Component {
 
     if (this.props.blank)
       className += ' blank';
-    else {
-      if (this.props.faceUp)
-        className += ' face-up';
-      else
-        className += ' face-down';
-    }
+    else if (this.props.faceUp)
+      className += ' face-up';
+    else
+      className += ' face-down';
 
     return (
       <div className={className} onClick={this.props.blank ? () => {} : this.props.click}>
