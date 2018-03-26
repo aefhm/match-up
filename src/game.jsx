@@ -30,12 +30,13 @@ const Game = function (store) {
   return (
     <div>
       <Board
-        matchedCardIds={store.matchedCardIds}
-        turnedCardId={store.turnedCardId}
         cardLimit={cardLimit}
+        matchedCardIds={store.matchedCardIds}
         turnCard={turnCard}
+        turnedCardId={store.turnedCardId}
       />
       <Stats
+        cardLimit={cardLimit}
         cards={store.matchedCardIds}
       />
     </div>
@@ -44,9 +45,9 @@ const Game = function (store) {
 
 const mapStateToProps = function (state) {
   return {
+    activeTurn: state.turnedCards.length,
     matchedCardIds: state.matchedCards,
     turnedCardId: state.turnedCards[0],
-    activeTurn: state.turnedCards.length,
   };
 };
 

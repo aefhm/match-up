@@ -19,26 +19,26 @@ function shuffle(cards) {
 
 class Board extends React.Component {
   componentWillMount() {
-    this.randomOrder = new Array;
+    let array = new Array;
 
     for (let i = 0; i < this.props.cardLimit; i++)
-      this.randomOrder.push(i);
+      array.push(i);
 
-    this.randomOrder = shuffle(this.randomOrder);
+    this.seedOrder = shuffle(array);
   }
 
   render() {
-    this.cards = [];
+    this.cards = new Array(this.props.cardLimit);
 
     for (let i = 0; i < this.props.cardLimit; i++)
-      this.cards.push(<Card
+      this.cards[this.seedOrder[i]] = <Card
         key={i}
         index={i}
         value={i % 13}
         blank={this.props.matchedCardIds.includes(i)}
         faceUp={this.props.turnedCardId === i}
         click={() => { this.props.turnCard(i, this.props.turnedCardId); }}
-      />);
+      />;
 
     return (
       <div className="board">

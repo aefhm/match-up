@@ -12,7 +12,7 @@ const suitLabel = {
 class Card extends React.Component {
   innerDisplay() {
     if (this.props.faceUp)
-      return this.props.value + ' of ' + suitLabel[Math.floor(this.props.index / 13)];
+      return (this.props.value + 1) + ' of ' + suitLabel[Math.floor(this.props.index / 13)];
     else
       return 'Back of card';
   }
@@ -20,10 +20,13 @@ class Card extends React.Component {
   render() {
     let className = 'card';
 
-    if (this.props.blank) className += ' blank';
+    if (this.props.blank)
+      className += ' blank';
     else {
-      if (this.props.faceUp) className += ' face-up';
-      else className += ' face-down';
+      if (this.props.faceUp)
+        className += ' face-up';
+      else
+        className += ' face-down';
     }
 
     return (
@@ -35,10 +38,10 @@ class Card extends React.Component {
 }
 
 Card.propTypes = {
+  index: PropTypes.number.isRequired,
   blank: PropTypes.bool,
   click: PropTypes.func,
   faceUp: PropTypes.bool,
-  index: PropTypes.number.isRequired,
 };
 
 Card.defaultProps = {

@@ -10,8 +10,8 @@
   width: 75px;
   height: 100px;
   display: inline-block;
-  margin: 5px;
   border: solid;
+  margin: 5px;
   background-color: gray;
 }
 
@@ -25,6 +25,6 @@
 }
 
 .board {
-  flex-wrap: wrap;
   display: flex;
+  flex-wrap: wrap;
 }

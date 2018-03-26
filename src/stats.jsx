@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 class Stats extends React.Component {
   displayMessage() {
-    if (this.props.cards.length == 52)
+    if (this.props.cards.length == this.props.cardLimit)
       return 'You have won';
     else
       return 'You have matched ' + this.props.cards.length + ' cards';
@@ -33,6 +33,7 @@ class Stats extends React.Component {
 
 Stats.propTypes = {
   cards: PropTypes.array,
+  cardLimit: PropTypes.number,
 };
 
 export default Stats;
