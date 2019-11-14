@@ -1,5 +1,5 @@
 ## Setup
-* Ensure `node` is installed for best usage. Otherwise, `npm` is sufficient.
+* Ensure `node` is installed for best usage.
 * `npm install`
 * `npm start`
 * Visit webpack dev server output (normally `localhost:8080`)
